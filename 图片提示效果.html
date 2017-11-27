@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.2.1.js" type="text/javascript">
+			
+		</script>
+		<style>
+			body,ul,li{margin: 0;padding: 0;}
+			body{font:20px/20px arial}
+			ul{margin: 10px auto;width: 368px;}
+			li{list-style-type: none;}
+			ul li a img{float: left;border: 1px solid #000;margin: 5px;width: 80px;}
+			#tooltip{width: 512px;height: 387px;position: absolute;background: #000;color: #fff;vertical-align: center;}
+			#tooltip img{width: 510px;height: 355px;border: 1px solid #000;}
+			
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<a href="img/1.jpg" class="tooltip" title="zyx1"><img src="img/1-m.jpg"/></a>
+			</li>
+			<li>
+				<a href="img/2.jpg" class="tooltip" title="zyx2"><img src="img/2-m.jpg"/></a>
+			</li>
+			<li>
+				<a href="img/3.jpg" class="tooltip" title="zyx3"><img src="img/3-m.jpg"/></a>
+			</li>
+			<li>
+				<a href="img/4.jpg" class="tooltip" title="zyx4"><img src="img/4-m.jpg"/></a>
+			</li>
+		</ul>
+		<script>
+			$(function(){
+				$("a.tooltip").mouseover(function(e){
+					this.myTitle = this.title;
+					this.title = "";
+					var imgTitle = this.myTitle ? "<br/>" + this.myTitle :"";
+					var tooltip = "<div id='tooltip'><img src='" + this.href + "'/>" + imgTitle +"</div>";
+					$("body").append(tooltip);
+					$("#tooltip").css({
+						"top":e.pageY + 10 + "px",
+						"left":e.pageX + 20 + "px"
+					})
+				}).mouseout(function(){
+					this.title=this.myTitle;
+					$("#tooltip").remove();
+				}).mousemove(function(e){
+					$("#tooltip").css({
+						"top":e.pageY + 10 + "px",
+						"left":e.pageX + 20 + "px"
+					})
+				}).click(function(){
+					return false;
+				})
+			})
+		</script>
+	</body>
+</html>
