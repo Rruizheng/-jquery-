@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+		<style>
+			body,ul,li,button{margin: 0;padding: 0;}
+			body{font: 12px/1.5 arial;}
+			ul{width: 100px;margin: 5px auto 0;text-align: center;}
+			li{width: 100px;height: 30px;line-height:30px;list-style-type: none;text-align: center;background: #ccc;margin-bottom: 5px;border-radius: 5px;}
+			.btn{margin: 10px auto;text-align: center;}
+			.btn button{margin: 0 5px;}
+			.red{background: red;}
+			
+		</style>
+	</head>
+	<body>
+		<div class="btn">
+			<button>改变颜色</button>
+			<button>插入元素</button>
+			<button>删除第一个元素</button>
+			<button>重新插入</button>
+			<button>复制列表</button>
+			<button>切换颜色</button>
+		</div>
+		<ul width="100px">
+			<li>面包</li>
+			<li>水果</li>
+			<li>挂历</li>
+			<li>镜子</li>
+			<li>苹果</li>
+		</ul>
+		
+		<script>
+			var $btn = $("div.btn button");
+			var $li = $("ul li:eq(0)");
+			var li_txt = $li.text();
+			var $ul = $("ul");
+			var ul_txt = $ul.attr("width");
+			var fnt = null;
+			$btn.eq(0).click(function(){
+			     $("ul li:eq(0)").css("background","aqua");
+			});
+			$btn.eq(1).click(function(){
+				var $li_1 = $("<li>香蕉</li>");
+				//var $li_2 = $("<li>哈密瓜</li>");
+				$ul.prepend($li_1);
+				//$li.after($li_2);
+			})
+			$btn.eq(2).click(function(){
+				fst = $("ul li:eq(0)").remove();
+			})
+			$btn.eq(3).click(function(){
+				$("ul").prepend(fst);
+			})
+			$btn.eq(4).click(function(){
+				$("ul").clone(true).appendTo($("body"));
+			})
+			$btn.eq(5).click(function(){
+				$("ul li").toggleClass("red");
+			})
+			
+		</script>
+	</body>
+</html>
